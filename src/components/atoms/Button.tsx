@@ -4,6 +4,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   children: ReactNode;
+  as?: string;
 }
 
 export default function Button({ 
@@ -12,6 +13,7 @@ export default function Button({
   children, 
   className = '',
   disabled = false,
+  as,
   ...props 
 }: ButtonProps) {
   const baseStyles = 'font-bold rounded-xl transition-all flex items-center justify-center gap-2';
@@ -31,6 +33,8 @@ export default function Button({
   const disabledStyles = disabled 
     ? 'opacity-50 cursor-not-allowed pointer-events-none' 
     : '';
+  
+  const Component = as || 'button';
   
   return (
     <button 
