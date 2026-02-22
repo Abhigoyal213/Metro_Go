@@ -10,7 +10,9 @@ const ADMIN_NAME = 'Abhishek';
 export default function Header() {
   const { user, logout } = useAuth();
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   const isAdmin = user?.phone === ADMIN_PHONE && user?.name === ADMIN_NAME;
@@ -20,6 +22,9 @@ export default function Header() {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setShowUserMenu(false);
       }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setShowMobileMenu(false);
+      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
@@ -28,12 +33,17 @@ export default function Header() {
 
   const handleLogout = () => {
     logout();
+    setShowMobileMenu(false);
     navigate('/login');
+  };
+
+  const handleNavClick = () => {
+    setShowMobileMenu(false);
   };
 
   return (
     <header className="flex-none flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark px-6 py-3 shadow-sm">
-      <Link to="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
+      <Link to="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity" onClick={handleNavClick}>
         <div className="size-8 text-primary">
           <svg className="w-full h-full" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
             <path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"/>
@@ -42,7 +52,9 @@ export default function Header() {
         </div>
         <h2 className="text-slate-900 dark:text-slate-50 text-xl font-bold">MetroGo</h2>
       </Link>
-      <div className="flex items-center gap-8">
+      
+      <div className="flex items-center gap-4">
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           <Link to="/" className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium">
             Plan Journey
@@ -56,7 +68,18 @@ export default function Header() {
             </Link>
           )}
         </nav>
-        <div className="flex gap-2 items-center">
+
+        {/* Mobile Burger Menu Button */}
+        <button
+          onClick={() => setShowMobileMenu(!showMobileMenu)}
+          className="md:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          aria-label="Toggle menu"
+        >
+          <Icon name={showMobileMenu ? "close" : "menu"} />
+        </button>
+
+        {/* Desktop User Menu & Theme Toggle */}
+        <div className="hidden md:flex gap-2 items-center">
           <ThemeToggle />
           {user ? (
             <div className="relative" ref={menuRef}>
@@ -100,6 +123,87 @@ export default function Header() {
           )}
         </div>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      {showMobileMenu && (
+        <div 
+          ref={mobileMenuRef}
+          className="md:hidden absolute top-[57px] left-0 right-0 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 shadow-lg z-50 animate-fadeIn"
+        >
+          <nav className="flex flex-col p-4 space-y-2">
+            <Link 
+              to="/" 
+              onClick={handleNavClick}
+              className="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+            >
+              <Icon name="route" />
+              <span className="font-medium">Plan Journey</span>
+            </Link>
+            <Link 
+              to="/status" 
+              onClick={handleNavClick}
+              className="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+            >
+              <Icon name="map" />
+              <span className="font-medium">Network Map</span>
+            </Link>
+            {isAdmin && (
+              <Link 
+                to="/admin" 
+                onClick={handleNavClick}
+                className="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+              >
+                <Icon name="admin_panel_settings" />
+                <span className="font-medium">Admin Panel</span>
+              </Link>
+            )}
+            
+            <div className="border-t border-slate-200 dark:border-slate-700 my-2"></div>
+            
+            {/* Theme Toggle in Mobile Menu */}
+            <div className="flex items-center justify-between px-4 py-3">
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Theme</span>
+              <ThemeToggle />
+            </div>
+
+            {/* User Section in Mobile Menu */}
+            {user ? (
+              <>
+                <div className="px-4 py-3 bg-slate-50 dark:bg-slate-900 rounded-lg">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Icon name="account_circle" />
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900 dark:text-slate-50">{user.name}</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">{user.phone}</p>
+                    </div>
+                  </div>
+                  {isAdmin && (
+                    <span className="inline-block px-2 py-1 text-xs font-bold bg-primary/10 text-primary rounded">
+                      Admin
+                    </span>
+                  )}
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                >
+                  <Icon name="logout" />
+                  <span className="font-medium">Logout</span>
+                </button>
+              </>
+            ) : (
+              <Link
+                to="/login"
+                onClick={handleNavClick}
+                className="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary hover:bg-primary-dark text-white transition-colors"
+              >
+                <Icon name="login" />
+                <span className="font-medium">Login</span>
+              </Link>
+            )}
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
