@@ -176,7 +176,7 @@ export default function DynamicMetroMap({
   };
   
   return (
-    <section className="flex-1 relative bg-slate-200 dark:bg-slate-900 overflow-hidden">
+    <section className="w-full h-full relative bg-slate-200 dark:bg-slate-900 overflow-hidden">
       {/* Map Controls */}
       <div className="absolute top-6 right-6 flex flex-col gap-2 z-10">
         <button 

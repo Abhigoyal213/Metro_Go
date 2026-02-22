@@ -131,53 +131,44 @@ function buildSegments(
   network: MetroNetwork,
   path: { stationId: string; lineId: string }[]
 ): RouteSegment[] {
+  if (path.length === 0) return [];
+  
   const segments: RouteSegment[] = [];
+  let currentSegmentStations: Station[] = [];
   let currentLineId = path[0].lineId;
-  let segmentStations: Station[] = [];
   
   for (let i = 0; i < path.length; i++) {
     const step = path[i];
     const station = getStationById(network, step.stationId);
     if (!station) continue;
     
-    // Check if line is changing
-    if (step.lineId !== currentLineId && segmentStations.length > 0) {
-      // Add current station to complete the previous segment (interchange station)
-      segmentStations.push(station);
-      
-      // Create segment for previous line
+    // Add station to current segment
+    currentSegmentStations.push(station);
+    
+    // Check if this is the last station OR if next station is on a different line
+    const isLastStation = i === path.length - 1;
+    const nextLineId = !isLastStation ? path[i + 1].lineId : null;
+    const isLineChanging = nextLineId && nextLineId !== currentLineId;
+    
+    if (isLastStation || isLineChanging) {
+      // Create segment for current line
       const line = network.lines.find(l => l.id === currentLineId);
-      if (line) {
+      if (line && currentSegmentStations.length >= 2) {
         segments.push({
           lineId: line.id,
           lineName: line.name,
           lineColor: line.color,
-          stations: segmentStations,
-          from: segmentStations[0],
-          to: segmentStations[segmentStations.length - 1]
+          stations: [...currentSegmentStations],
+          from: currentSegmentStations[0],
+          to: currentSegmentStations[currentSegmentStations.length - 1]
         });
       }
       
-      // Start new segment with interchange station
-      segmentStations = [station];
-      currentLineId = step.lineId;
-    } else {
-      segmentStations.push(station);
-    }
-  }
-  
-  // Add final segment
-  if (segmentStations.length > 0) {
-    const line = network.lines.find(l => l.id === currentLineId);
-    if (line) {
-      segments.push({
-        lineId: line.id,
-        lineName: line.name,
-        lineColor: line.color,
-        stations: segmentStations,
-        from: segmentStations[0],
-        to: segmentStations[segmentStations.length - 1]
-      });
+      // If line is changing, start new segment with the interchange station
+      if (isLineChanging) {
+        currentSegmentStations = [station]; // Keep interchange station for next segment
+        currentLineId = nextLineId!;
+      }
     }
   }
   

@@ -59,8 +59,9 @@ export default function NetworkStatus() {
   return (
     <div className="h-screen flex flex-col bg-background-light dark:bg-background-dark">
       <Header />
-      <main className="flex-1 flex overflow-hidden">
-        <aside className="w-full lg:w-[400px] bg-surface-light dark:bg-surface-dark border-r border-slate-200 dark:border-slate-800 overflow-y-auto custom-scrollbar">
+      <main className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+        {/* Sidebar - Full width on mobile, fixed width on desktop */}
+        <aside className="w-full lg:w-[400px] bg-surface-light dark:bg-surface-dark lg:border-r border-slate-200 dark:border-slate-800 overflow-y-auto custom-scrollbar">
           <div className="p-6">
             <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-6">Network Status</h1>
             
@@ -111,7 +112,7 @@ export default function NetworkStatus() {
             </div>
 
             {/* Service Updates */}
-            <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4">
+            <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 mb-8">
               <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-3 flex items-center gap-2">
                 <Icon name="info" />
                 Service Updates
@@ -127,9 +128,19 @@ export default function NetworkStatus() {
               </div>
             </div>
           </div>
+
+          {/* Map Section - Mobile Only (appears after status info in scroll) */}
+          <div className="lg:hidden h-[500px] border-t border-slate-200 dark:border-slate-800">
+            <DynamicMetroMap network={network} />
+          </div>
         </aside>
 
-        <DynamicMetroMap network={network} />
+        {/* Map Section - Desktop Only (right side) */}
+        <div className="hidden lg:block lg:flex-1 bg-slate-200 dark:bg-slate-900">
+          <div className="h-full w-full">
+            <DynamicMetroMap network={network} />
+          </div>
+        </div>
       </main>
     </div>
   );

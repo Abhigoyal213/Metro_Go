@@ -34,10 +34,10 @@ export default function BookingConfirmation() {
   if (!bookingRef) return null;
 
   return (
-    <div className="h-screen flex flex-col bg-background-light dark:bg-background-dark">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       <Header />
-      <main className="flex-1 flex items-center justify-center p-6">
-        <div className="max-w-md w-full bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+      <main className="flex-1 flex justify-center p-6 overflow-y-auto">
+        <div className="max-w-md w-full bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 p-8 my-auto">
           <div className="text-center mb-6">
             <div className="inline-flex items-center justify-center size-16 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 mb-4">
               <Icon name="check_circle" className="text-4xl" />
@@ -46,32 +46,36 @@ export default function BookingConfirmation() {
             <p className="text-slate-600 dark:text-slate-400">Your metro ticket is ready</p>
           </div>
 
-          <div className="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-6 mb-6 border border-slate-200 dark:border-slate-700">
+          <div className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950 rounded-xl p-6 mb-6 border border-slate-200 dark:border-slate-700">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Booking Reference</span>
-              <Badge variant="primary">{bookingRef}</Badge>
+              <span className="text-sm font-medium text-slate-600 dark:text-slate-400">Booking Reference</span>
+              <Badge variant="primary" className="text-sm">{bookingRef}</Badge>
             </div>
 
-            <div className="space-y-3 mb-6">
+            <div className="space-y-4 mb-6">
               <div className="flex items-start gap-3">
-                <Icon name="trip_origin" className="text-slate-400 dark:text-slate-500 mt-0.5" />
+                <div className="size-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+                  <Icon name="trip_origin" className="text-green-600 dark:text-green-400 text-lg" />
+                </div>
                 <div>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">From</p>
-                  <p className="font-semibold text-slate-900 dark:text-slate-100">{source}</p>
+                  <p className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">From</p>
+                  <p className="font-bold text-slate-900 dark:text-slate-100 text-lg">{source}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Icon name="location_on" className="text-slate-400 dark:text-slate-500 mt-0.5" />
+                <div className="size-8 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center flex-shrink-0">
+                  <Icon name="location_on" className="text-red-600 dark:text-red-400 text-lg" />
+                </div>
                 <div>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">To</p>
-                  <p className="font-semibold text-slate-900 dark:text-slate-100">{destination}</p>
+                  <p className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">To</p>
+                  <p className="font-bold text-slate-900 dark:text-slate-100 text-lg">{destination}</p>
                 </div>
               </div>
             </div>
 
             {qrCode && (
               <div className="flex justify-center">
-                <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 shadow-lg">
+                <div className="bg-white dark:bg-slate-700 p-4 rounded-xl border-2 border-slate-300 dark:border-slate-600 shadow-lg">
                   <img src={qrCode} alt="Booking QR Code" className="w-48 h-48" />
                 </div>
               </div>

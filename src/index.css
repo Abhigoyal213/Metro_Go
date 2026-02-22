@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  html, body, #root {
+    @apply h-full w-full;
+  }
+  
   body {
-    @apply font-display antialiased;
+    @apply font-display antialiased bg-slate-50 dark:bg-slate-950;
   }
   
   /* Smooth theme transitions */
