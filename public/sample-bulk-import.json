@@ -1,0 +1,109 @@
+{
+  "lines": [
+    {
+      "id": "green",
+      "name": "Green Line",
+      "color": "#4CAF50",
+      "stations": [
+        {
+          "id": "forest_park",
+          "name": "Forest Park",
+          "x": 100,
+          "y": 100
+        },
+        {
+          "id": "green_valley",
+          "name": "Green Valley",
+          "x": 200,
+          "y": 100
+        },
+        {
+          "id": "central_square",
+          "name": "Central Square",
+          "x": 250,
+          "y": 200
+        },
+        {
+          "id": "eco_station",
+          "name": "Eco Station",
+          "x": 300,
+          "y": 300
+        },
+        {
+          "id": "nature_hub",
+          "name": "Nature Hub",
+          "x": 400,
+          "y": 300
+        }
+      ]
+    },
+    {
+      "id": "orange",
+      "name": "Orange Line",
+      "color": "#FF9800",
+      "stations": [
+        {
+          "id": "sunset_bay",
+          "name": "Sunset Bay",
+          "x": 50,
+          "y": 300
+        },
+        {
+          "id": "orange_grove",
+          "name": "Orange Grove",
+          "x": 150,
+          "y": 300
+        },
+        {
+          "id": "central_square",
+          "name": "Central Square",
+          "x": 250,
+          "y": 200
+        },
+        {
+          "id": "amber_plaza",
+          "name": "Amber Plaza",
+          "x": 350,
+          "y": 100
+        }
+      ]
+    },
+    {
+      "id": "silver",
+      "name": "Silver Line",
+      "color": "#9E9E9E",
+      "stations": [
+        {
+          "id": "metal_works",
+          "name": "Metal Works",
+          "x": 250,
+          "y": 50
+        },
+        {
+          "id": "silver_springs",
+          "name": "Silver Springs",
+          "x": 250,
+          "y": 125
+        },
+        {
+          "id": "central_square",
+          "name": "Central Square",
+          "x": 250,
+          "y": 200
+        },
+        {
+          "id": "chrome_district",
+          "name": "Chrome District",
+          "x": 250,
+          "y": 275
+        },
+        {
+          "id": "platinum_end",
+          "name": "Platinum End",
+          "x": 250,
+          "y": 350
+        }
+      ]
+    }
+  ]
+}

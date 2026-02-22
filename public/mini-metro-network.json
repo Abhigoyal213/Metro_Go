@@ -1,0 +1,52 @@
+{
+  "lines": [
+    {
+      "id": "red",
+      "name": "Red Line",
+      "color": "#E53935",
+      "stations": [
+        { "id": "west_park", "name": "West Park", "x": 50, "y": 200 },
+        { "id": "city_mall", "name": "City Mall", "x": 150, "y": 200 },
+        { "id": "central_square", "name": "Central Square", "x": 250, "y": 200 },
+        { "id": "museum_road", "name": "Museum Road", "x": 350, "y": 200 },
+        { "id": "east_market", "name": "East Market", "x": 450, "y": 200 },
+        { "id": "tech_park", "name": "Tech Park", "x": 550, "y": 200 }
+      ]
+    },
+    {
+      "id": "blue",
+      "name": "Blue Line",
+      "color": "#1E88E5",
+      "stations": [
+        { "id": "north_gate", "name": "North Gate", "x": 250, "y": 50 },
+        { "id": "riverfront", "name": "Riverfront", "x": 250, "y": 125 },
+        { "id": "central_square", "name": "Central Square", "x": 250, "y": 200 },
+        { "id": "grand_avenue", "name": "Grand Avenue", "x": 250, "y": 275 },
+        { "id": "south_junction", "name": "South Junction", "x": 250, "y": 350 },
+        { "id": "airport_terminal", "name": "Airport Terminal", "x": 250, "y": 425 }
+      ]
+    },
+    {
+      "id": "yellow",
+      "name": "Yellow Line",
+      "color": "#FDD835",
+      "stations": [
+        { "id": "old_town", "name": "Old Town", "x": 400, "y": 100 },
+        { "id": "east_market", "name": "East Market", "x": 450, "y": 200 },
+        { "id": "grand_avenue", "name": "Grand Avenue", "x": 250, "y": 275 },
+        { "id": "university", "name": "University", "x": 150, "y": 325 },
+        { "id": "innovation_hub", "name": "Innovation Hub", "x": 75, "y": 375 }
+      ]
+    },
+    {
+      "id": "purple",
+      "name": "Purple Line",
+      "color": "#8E24AA",
+      "stations": [
+        { "id": "south_junction", "name": "South Junction", "x": 250, "y": 350 },
+        { "id": "city_hospital", "name": "City Hospital", "x": 350, "y": 375 },
+        { "id": "lake_view", "name": "Lake View", "x": 450, "y": 400 }
+      ]
+    }
+  ]
+}

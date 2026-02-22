@@ -1,0 +1,78 @@
+{
+  "lines": [
+    {
+      "id": "test_line_1",
+      "name": "Test Line 1",
+      "color": "#FF0000",
+      "stations": [
+        {
+          "id": "station_a",
+          "name": "Station A",
+          "x": 100,
+          "y": 100
+        },
+        {
+          "id": "station_b",
+          "name": "Station B",
+          "x": 200,
+          "y": 100
+        }
+      ]
+    },
+    {
+      "id": "",
+      "name": "Missing ID Line",
+      "color": "#00FF00",
+      "stations": [
+        {
+          "id": "station_c",
+          "name": "Station C",
+          "x": 100,
+          "y": 200
+        }
+      ]
+    },
+    {
+      "id": "test_line_3",
+      "name": "Invalid Color Line",
+      "color": "red",
+      "stations": [
+        {
+          "id": "station_d",
+          "name": "Station D",
+          "x": 300,
+          "y": 100
+        },
+        {
+          "id": "",
+          "name": "Missing ID Station",
+          "x": 400,
+          "y": 100
+        },
+        {
+          "id": "station_f",
+          "name": "",
+          "x": 500,
+          "y": 100
+        }
+      ]
+    },
+    {
+      "id": "test_line_4",
+      "name": "Missing Coordinates Line",
+      "color": "#0000FF",
+      "stations": [
+        {
+          "id": "station_g",
+          "name": "Station G",
+          "x": 100
+        },
+        {
+          "id": "station_h",
+          "name": "Station H",
+          "y": 300
+        }
+      ]
+    }
+  ]
+}

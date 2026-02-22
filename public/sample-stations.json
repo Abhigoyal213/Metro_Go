@@ -1,0 +1,44 @@
+[
+  {
+    "id": "S1",
+    "name": "Central Station",
+    "lineId": "L1",
+    "coordinates": { "x": 300, "y": 200 }
+  },
+  {
+    "id": "S2",
+    "name": "North Plaza",
+    "lineId": "L1",
+    "coordinates": { "x": 400, "y": 300 }
+  },
+  {
+    "id": "S3",
+    "name": "Civic Center",
+    "lineId": "L1",
+    "coordinates": { "x": 500, "y": 400 }
+  },
+  {
+    "id": "S4",
+    "name": "Tech Park",
+    "lineId": "L2",
+    "coordinates": { "x": 200, "y": 300 }
+  },
+  {
+    "id": "S5",
+    "name": "University",
+    "lineId": "L2",
+    "coordinates": { "x": 200, "y": 500 }
+  },
+  {
+    "id": "S6",
+    "name": "Airport Terminal 1",
+    "lineId": "L3",
+    "coordinates": { "x": 700, "y": 700 }
+  },
+  {
+    "id": "S7",
+    "name": "Airport Terminal 2",
+    "lineId": "L3",
+    "coordinates": { "x": 800, "y": 700 }
+  }
+]

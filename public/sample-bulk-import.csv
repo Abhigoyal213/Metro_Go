@@ -1,0 +1,15 @@
+line_id,line_name,line_color,station_id,station_name,x,y
+green,Green Line,#4CAF50,forest_park,Forest Park,100,100
+green,Green Line,#4CAF50,green_valley,Green Valley,200,100
+green,Green Line,#4CAF50,central_square,Central Square,250,200
+green,Green Line,#4CAF50,eco_station,Eco Station,300,300
+green,Green Line,#4CAF50,nature_hub,Nature Hub,400,300
+orange,Orange Line,#FF9800,sunset_bay,Sunset Bay,50,300
+orange,Orange Line,#FF9800,orange_grove,Orange Grove,150,300
+orange,Orange Line,#FF9800,central_square,Central Square,250,200
+orange,Orange Line,#FF9800,amber_plaza,Amber Plaza,350,100
+silver,Silver Line,#9E9E9E,metal_works,Metal Works,250,50
+silver,Silver Line,#9E9E9E,silver_springs,Silver Springs,250,125
+silver,Silver Line,#9E9E9E,central_square,Central Square,250,200
+silver,Silver Line,#9E9E9E,chrome_district,Chrome District,250,275
+silver,Silver Line,#9E9E9E,platinum_end,Platinum End,250,350
