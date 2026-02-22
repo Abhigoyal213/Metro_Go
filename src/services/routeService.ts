@@ -135,12 +135,17 @@ function buildSegments(
   let currentLineId = path[0].lineId;
   let segmentStations: Station[] = [];
   
-  for (const step of path) {
+  for (let i = 0; i < path.length; i++) {
+    const step = path[i];
     const station = getStationById(network, step.stationId);
     if (!station) continue;
     
+    // Check if line is changing
     if (step.lineId !== currentLineId && segmentStations.length > 0) {
-      // Line change - create segment
+      // Add current station to complete the previous segment (interchange station)
+      segmentStations.push(station);
+      
+      // Create segment for previous line
       const line = network.lines.find(l => l.id === currentLineId);
       if (line) {
         segments.push({
@@ -152,6 +157,8 @@ function buildSegments(
           to: segmentStations[segmentStations.length - 1]
         });
       }
+      
+      // Start new segment with interchange station
       segmentStations = [station];
       currentLineId = step.lineId;
     } else {
