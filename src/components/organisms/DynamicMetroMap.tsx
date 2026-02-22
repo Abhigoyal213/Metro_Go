@@ -301,7 +301,7 @@ export default function DynamicMetroMap({
                         <path
                           d={segmentPath}
                           fill="none"
-                          stroke={line.color}
+                          stroke={segment.lineColor}
                           strokeWidth="12"
                           strokeLinecap="round"
                           style={{ 
