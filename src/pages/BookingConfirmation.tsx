@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/molecules/Header';
 import Button from '../components/atoms/Button';
-import Badge from '../atoms/Badge';
+import Badge from '../components/atoms/Badge';
 import Icon from '../components/atoms/Icon';
 import { useBookingStore } from '../store/bookingStore';
 import { generateQRCode } from '../utils/qrUtils';
