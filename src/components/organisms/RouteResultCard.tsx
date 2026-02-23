@@ -43,7 +43,7 @@ export default function RouteResultCard({ route, isRecommended = false, onBook, 
             </div>
             <div className="flex items-center gap-2 text-sm">
               <span className="font-semibold text-slate-700 dark:text-slate-200">
-                ${fare.toFixed(2)}
+                ₹{fare.toFixed(0)}
               </span>
               <span className="text-slate-400">•</span>
               <span className="text-slate-500 dark:text-slate-400">
@@ -117,7 +117,7 @@ export default function RouteResultCard({ route, isRecommended = false, onBook, 
                   Fare
                 </div>
                 <div className="text-lg font-bold text-slate-900 dark:text-slate-50">
-                  ${fare.toFixed(2)}
+                  ₹{fare.toFixed(0)}
                 </div>
               </div>
             </div>

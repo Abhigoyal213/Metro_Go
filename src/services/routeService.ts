@@ -193,9 +193,9 @@ function detectInterchangesInRoute(segments: RouteSegment[]): Station[] {
 }
 
 export function calculateFare(route: ComputedRoute): number {
-  const basefare = 1.5;
-  const perStationFare = 0.15;
-  const interchangeFee = 0.25;
+  const basefare = 10; // Base fare in rupees
+  const perStationFare = 5; // Per station fare in rupees
+  const interchangeFee = 5; // Interchange fee in rupees
   
   return basefare + 
          (route.totalStations * perStationFare) + 

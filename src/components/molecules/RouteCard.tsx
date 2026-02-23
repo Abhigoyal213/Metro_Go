@@ -29,7 +29,7 @@ export default function RouteCard({ totalTime, price, transfers, segments, onBoo
               {totalTime} <span className="text-sm font-normal text-slate-500">min</span>
             </span>
             <span className="text-sm font-medium text-slate-400">•</span>
-            <span className="text-lg font-semibold text-slate-700 dark:text-slate-200">${price.toFixed(2)}</span>
+            <span className="text-lg font-semibold text-slate-700 dark:text-slate-200">₹{price.toFixed(0)}</span>
           </div>
         </div>
         <div className="flex flex-col items-end">

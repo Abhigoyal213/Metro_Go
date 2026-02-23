@@ -2,14 +2,15 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/molecules/Header';
 import Button from '../components/atoms/Button';
-import Badge from '../components/atoms/Badge';
+import Badge from '../atoms/Badge';
 import Icon from '../components/atoms/Icon';
 import { useBookingStore } from '../store/bookingStore';
 import { generateQRCode } from '../utils/qrUtils';
+import { calculateFare } from '../services/routeService';
 
 export default function BookingConfirmation() {
   const navigate = useNavigate();
-  const { source, destination, bookingRef } = useBookingStore();
+  const { source, destination, route, bookingRef } = useBookingStore();
   const [qrCode, setQrCode] = useState<string>('');
 
   useEffect(() => {
@@ -32,6 +33,9 @@ export default function BookingConfirmation() {
   }, [bookingRef, source, destination, navigate]);
 
   if (!bookingRef) return null;
+
+  const fare = route ? calculateFare(route) : 0;
+  const duration = route ? route.duration : 0;
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
@@ -69,6 +73,28 @@ export default function BookingConfirmation() {
                 <div>
                   <p className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">To</p>
                   <p className="font-bold text-slate-900 dark:text-slate-100 text-lg">{destination}</p>
+                </div>
+              </div>
+
+              {/* Fare and Duration */}
+              <div className="grid grid-cols-2 gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
+                <div className="flex items-start gap-3">
+                  <div className="size-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
+                    <Icon name="schedule" className="text-blue-600 dark:text-blue-400 text-lg" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Duration</p>
+                    <p className="font-bold text-slate-900 dark:text-slate-100 text-lg">{duration} min</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="size-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center flex-shrink-0">
+                    <Icon name="payments" className="text-purple-600 dark:text-purple-400 text-lg" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Fare</p>
+                    <p className="font-bold text-slate-900 dark:text-slate-100 text-lg">₹{fare}</p>
+                  </div>
                 </div>
               </div>
             </div>
